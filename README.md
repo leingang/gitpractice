@@ -4,7 +4,7 @@ A practice `git` repository for the AIM Open Textbook Workshop, April 25-29, 201
 
 Based on the LaTeX version of [The Geometric Theta Correspondence for Hilbert Modular Surfaces](http://arxiv.org/abs/1108.5305), by Jens Funke, John Millson.
 
-Run pdflatex on funke-millson-master.tex
+Run pdflatex on `funke-millson-master.tex`
 
 Forked by MPL 2016-06-13 to use as `git` practice with coworkers.
 
