@@ -155,3 +155,11 @@ Git takes a long time to grok.  For more, consult one of these.
 
 * [Git for Authors](http://mathbook.pugetsound.edu/gfa/html/git-for-authors.html) by Rob Beezer et al.  By a mathematician, focused on code bases that are documents rather than software.
 * [The Git “red book”](https://git-scm.com/book/en/v2) The definitive guide.
+
+
+##Overleaf + github
+
+
+References
+----------
+*[Collaborate Online and Offline with Overleaf and Git (beta)](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.V2HBNvkrLb1)
