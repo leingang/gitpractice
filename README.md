@@ -157,9 +157,63 @@ Git takes a long time to grok.  For more, consult one of these.
 * [The Git “red book”](https://git-scm.com/book/en/v2) The definitive guide.
 
 
-##Overleaf + github
+##Overleaf + github Tutorial
+
+###Overleaf to local git repository to GitHub
+
+* I have made a new project in Overleaf. We'll clone this project to our local directory, and then sync this to a github repository
+
+* Open the project on overleaf: https://www.overleaf.com/4551529zqsdhy
+
+* Click "Share" to see to find the address of the git repository of this project on overleaf
+
+* Clone to your local directory using git clone: git clone https://git.overleaf.com/4551529zqsdhy
+
+* You now have the overleaf project on your local directory.
+
+* Next, to create the corresponding github repository, create a blank repository on github, then specify this as an additional remote repository:
+
+git remote add githubrepo <address of your github repository>
+
+(``githubrepo'' or whatever name you pick)
+
+*If you type git remote -v, you'll see that there are now two remote repositories associated with this local repository: origin (the overleaf one) and githubrepo (the github one)
+
+* Push to github
 
 
-References
-----------
+###GitHub/local git to Overleaf
+
+* Now for the reverse action.  Our goal will be to get this latex project to Overleaf.  We'll assume that our local git repository is up to date with this master repo (leingang/gitpractice).
+
+* Go to your overleaf account and create a new project
+
+* In your new project, you have to have at least one latex file; this could be just a blank file.  (This will eventually get deleted anyway.)
+
+* In your local git directory, add overleaf as the second remote git repository: 
+
+git remote add overleaf https://git.overleaf.com/4551529zqsdhy
+
+
+* Pull the latest content from Overleaf and merge to your current branch:
+
+git checkout <branch>
+git pull overleaf master
+
+* The Overleaf website says you need to do this (I didn't have to though somehow):
+
+Revert the merge to get rid of the files in the existing Overleaf project:
+
+git revert --mainline 1 HEAD
+
+* Push your project to Overleaf:
+
+git push overleaf master
+
+
+*[More info here](https://www.overleaf.com/help/230-how-do-i-push-a-new-project-to-overleaf-via-git#.V2HExPkrLb0)
+
+
+###References
+
 *[Collaborate Online and Offline with Overleaf and Git (beta)](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.V2HBNvkrLb1)
