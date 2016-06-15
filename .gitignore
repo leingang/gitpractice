@@ -1,3 +1,11 @@
 funke-millson-master.aux
 funke-millson-master.log
 funke-millson-master.pdf
+funke-millson-master.bbl
+funke-millson-master.blg
+*.blg
+*.log
+*.aux
+*.pdf
+*.bbl
+
