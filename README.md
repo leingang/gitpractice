@@ -157,63 +157,73 @@ Git takes a long time to grok.  For more, consult one of these.
 * [The Git “red book”](https://git-scm.com/book/en/v2) The definitive guide.
 
 
-##Overleaf + github Tutorial
+##github + Overleaf Tutorial
 
-###Overleaf to local git repository to GitHub
+[Overleaf](https://www.overleaf.com/) is an online platform for latex collaboration.  With a free account, one can collaborate with any number of other users on a latex document, observing changes in real time.  This would be another option to collaborate on latex documents.  (Sharelatex is another one similar to Overleaf.)
 
-* I have made a new project in Overleaf. We'll clone this project to our local directory, and then sync this to a github repository
+It includes a feature that links Overleaf and Git.  You can clone any Overleaf project, and you can also push any project you have to Overleaf.
 
-* Open the project on overleaf: https://www.overleaf.com/4551529zqsdhy
+####Overleaf to local git repository to github
 
-* Click "Share" to see to find the address of the git repository of this project on overleaf
+First, make a (free) Overleaf account if you don't have one yet.  I've made a "toy" project in Overleaf that we can use to try this out. We'll clone this project to our local directory, and then sync this to a github remote repository.
 
-* Clone to your local directory using git clone: git clone https://git.overleaf.com/4551529zqsdhy
+1. Click [this link](https://www.overleaf.com/4551529zqsdhy) to open the Overleaf project.
 
-* You now have the overleaf project on your local directory.
+2. Click "Share" (on top menu bar) to see to find the address of the git repository of this project on Overleaf.  
 
-* Next, to create the corresponding github repository, create a blank repository on github, then specify this as an additional remote repository:
+   (Spoiler alert: the address is  just https://git.overleaf.com/4551529zqsdhy; replacing "www" with "git" in the Overleaf project link.)
 
-git remote add githubrepo <address of your github repository>
+3. Clone to your local directory:
 
-(``githubrepo'' or whatever name you pick)
+   `git clone https://git.overleaf.com/2029559gkypzx`
 
-*If you type git remote -v, you'll see that there are now two remote repositories associated with this local repository: origin (the overleaf one) and githubrepo (the github one)
+   You now have the Overleaf project on your local directory.
+   
+   You can now work on the latex project offline, then commit and push it back to overleaf.
 
-* Push to github
+4. Next, suppose that we also want to have this project on github. Create a blank repository on github, then specify this as an additional remote repository:
 
+   `git remote add githubrepo <address of your github repository>`
 
-###GitHub/local git to Overleaf
+   _(What comes after `add` is whatever name you pick; here I picked "githubrepo".)_
 
-* Now for the reverse action.  Our goal will be to get this latex project to Overleaf.  We'll assume that our local git repository is up to date with this master repo (leingang/gitpractice).
+   _If you type `git remote -v`, you'll see that there are now two remote repositories associated with this local repository: origin (the Overleaf one) and githubrepo (the github one)._
 
-* Go to your overleaf account and create a new project
+5. Push to github
 
-* In your new project, you have to have at least one latex file; this could be just a blank file.  (This will eventually get deleted anyway.)
+   `git push githubrepo master`
 
-* In your local git directory, add overleaf as the second remote git repository: 
+####GitHub to local git to Overleaf
 
-git remote add overleaf https://git.overleaf.com/4551529zqsdhy
+Now for the reverse action.  Our goal will be to get the latex project in this githubpractice repository to Overleaf.  First, make sure that the local directory is up-to-date.
 
+1. Go to your Overleaf account and create a new project.
 
-* Pull the latest content from Overleaf and merge to your current branch:
+  In your new project, you have to have at least one latex file; this could be just a blank file.  (This "dummy" tex file will eventually get deleted anyway.)
 
-git checkout <branch>
-git pull overleaf master
+2. In your local git directory, add Overleaf as the second remote git repository: 
 
-* The Overleaf website says you need to do this (I didn't have to though somehow):
+   `git remote add overleaf <address of your overleaf project (git instead of www)>`
+   
+   _(What comes after `add` is whatever name you pick; here I picked "overleaf".)_
+   
+   _If you type `git remote -v`, you'll see that there are now two remote repositories associated with this local repository: origin (the github one) and overleaf (the Overleaf one)._
 
-Revert the merge to get rid of the files in the existing Overleaf project:
+3. Pull the latest content from Overleaf and merge to your current branch:
 
-git revert --mainline 1 HEAD
+   `git checkout <branch>`
+   `git pull overleaf master`
+   
+   _(Note: we can work with whatever branch locally/on github, but on Overleaf, we can only work with the master branch.)_
 
-* Push your project to Overleaf:
+4. The Overleaf website says you need to do this
 
-git push overleaf master
+   `git revert --mainline 1 HEAD`
 
+   to revert the merge to get rid of the files in the existing Overleaf project.
+   
+5. Push to Overleaf:
 
-*[More info here](https://www.overleaf.com/help/230-how-do-i-push-a-new-project-to-overleaf-via-git#.V2HExPkrLb0)
+   `git push overleaf master`
 
-
-###References
-
-*[Collaborate Online and Offline with Overleaf and Git (beta)](https://www.overleaf.com/blog/195-new-collaborate-online-and-offline-with-overleaf-and-git-beta#.V2HBNvkrLb1)
+[More info here](https://www.overleaf.com/help/230-how-do-i-push-a-new-project-to-overleaf-via-git#.V2HExPkrLb0)
